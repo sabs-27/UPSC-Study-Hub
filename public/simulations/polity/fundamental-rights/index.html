@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamental Rights (Part III)</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+    .sim-header { text-align: center; margin-bottom: 32px; }
+    .sim-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+    .sim-header p { color: var(--text-light); font-size: 0.95rem; }
+    .progress-bar { background: var(--border); border-radius: 20px; height: 8px; margin-bottom: 32px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 20px; transition: width 0.4s ease; }
+    .step-indicator { text-align: center; font-size: 0.85rem; color: var(--text-light); margin-bottom: 16px; }
+    .step { display: none; animation: fadeIn 0.3s ease; }
+    .step.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .step-card { background: var(--card-bg); border-radius: 12px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-bottom: 20px; }
+    .step-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+    .step-card h3 { font-size: 1.05rem; font-weight: 600; margin: 16px 0 8px; }
+    .step-card p, .step-card li { font-size: 0.95rem; color: var(--text); }
+    .step-card ul, .step-card ol { padding-left: 20px; margin: 8px 0; }
+    .step-card li { margin-bottom: 6px; }
+    .highlight { background: linear-gradient(120deg, rgba(99,102,241,0.1), rgba(168,85,247,0.1)); padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary); margin: 16px 0; }
+    .highlight strong { color: var(--primary); }
+    .mcq { margin-top: 20px; }
+    .mcq-question { font-weight: 600; margin-bottom: 12px; font-size: 0.95rem; }
+    .mcq-option { display: block; width: 100%; text-align: left; padding: 12px 16px; margin-bottom: 8px; background: var(--bg); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem; transition: all 0.2s ease; }
+    .mcq-option:hover { border-color: var(--primary-light); background: rgba(99,102,241,0.05); }
+    .mcq-option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); }
+    .mcq-option.wrong { border-color: var(--error); background: rgba(239,68,68,0.1); }
+    .mcq-option:disabled { cursor: default; opacity: 0.8; }
+    .explanation { display: none; margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; }
+    .explanation.show { display: block; }
+    .explanation.correct { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+    .explanation.wrong { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+    .nav-buttons { display: flex; justify-content: space-between; margin-top: 24px; }
+    .btn { padding: 10px 24px; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+    .btn-next { background: var(--primary); color: white; }
+    .btn-next:hover { background: var(--primary-light); transform: translateY(-1px); }
+    .btn-prev { background: var(--bg); color: var(--text-light); border: 1px solid var(--border); }
+    .btn-prev:hover { background: var(--border); }
+    .btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+    .completion { text-align: center; padding: 40px; }
+    .completion h2 { font-size: 1.6rem; color: var(--success); margin-bottom: 12px; }
+    .completion p { color: var(--text-light); }
+    .score-display { font-size: 2rem; font-weight: 800; color: var(--primary); margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    th { background: var(--bg); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sim-header">
+      <h1>Fundamental Rights (Part III)</h1>
+      <p>Indian Polity & Governance - 15 Step Guided Learning</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 6.67%"></div></div>
+    <div class="step-indicator" id="step-indicator">Step 1 of 15</div>
+
+    <!-- Step 1 -->
+    <div class="step active" data-step="1">
+      <div class="step-card">
+        <h2>Introduction to Fundamental Rights</h2>
+        <p>Fundamental Rights are enshrined in <strong>Part III (Articles 12-35)</strong> of the Indian Constitution. They are borrowed from the <strong>US Constitution</strong> and are justiciable in nature.</p>
+        <div class="highlight">
+          <strong>Key Point:</strong> Originally, there were 7 Fundamental Rights. After the 44th Amendment Act (1978), the Right to Property was removed, leaving 6 Fundamental Rights.
+        </div>
+        <p>These rights are guaranteed to protect the basic human rights of all citizens and are enforceable by the courts, subject to certain restrictions.</p>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" data-step="2">
+      <div class="step-card">
+        <h2>The Six Fundamental Rights</h2>
+        <table>
+          <thead><tr><th>Right</th><th>Articles</th></tr></thead>
+          <tbody>
+            <tr><td>Right to Equality</td><td>14-18</td></tr>
+            <tr><td>Right to Freedom</td><td>19-22</td></tr>
+            <tr><td>Right against Exploitation</td><td>23-24</td></tr>
+            <tr><td>Right to Freedom of Religion</td><td>25-28</td></tr>
+            <tr><td>Cultural and Educational Rights</td><td>29-30</td></tr>
+            <tr><td>Right to Constitutional Remedies</td><td>32-35</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight">
+          <strong>Remember:</strong> Dr. B.R. Ambedkar called Article 32 (Right to Constitutional Remedies) the "heart and soul" of the Constitution.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" data-step="3">
+      <div class="step-card">
+        <h2>Right to Equality (Articles 14-18)</h2>
+        <ul>
+          <li><strong>Article 14:</strong> Equality before law and equal protection of laws</li>
+          <li><strong>Article 15:</strong> Prohibition of discrimination on grounds of religion, race, caste, sex, or place of birth</li>
+          <li><strong>Article 16:</strong> Equality of opportunity in public employment</li>
+          <li><strong>Article 17:</strong> Abolition of Untouchability</li>
+          <li><strong>Article 18:</strong> Abolition of Titles (except military and academic)</li>
+        </ul>
+        <div class="highlight">
+          <strong>Important:</strong> Article 14 embodies the concept of "Rule of Law" as propounded by A.V. Dicey.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: MCQ -->
+    <div class="step" data-step="4">
+      <div class="step-card">
+        <h2>Knowledge Check #1</h2>
+        <div class="mcq" id="mcq-1">
+          <div class="mcq-question">Which article of the Indian Constitution is described as the "heart and soul" of the Constitution by Dr. B.R. Ambedkar?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-1')">Article 14 - Right to Equality</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-1')">Article 19 - Right to Freedom</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this, 'mcq-1')">Article 32 - Right to Constitutional Remedies</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-1')">Article 21 - Right to Life</button>
+          <div class="explanation" id="mcq-1-explanation">Article 32 guarantees the right to move the Supreme Court for enforcement of Fundamental Rights. Ambedkar considered it the most important article as without it, the other rights would be meaningless.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step" data-step="5">
+      <div class="step-card">
+        <h2>Right to Freedom (Articles 19-22)</h2>
+        <p><strong>Article 19</strong> guarantees six freedoms to Indian citizens:</p>
+        <ol>
+          <li>Freedom of speech and expression</li>
+          <li>Freedom to assemble peacefully without arms</li>
+          <li>Freedom to form associations or unions</li>
+          <li>Freedom to move freely throughout India</li>
+          <li>Freedom to reside and settle in any part of India</li>
+          <li>Freedom to practice any profession, trade or business</li>
+        </ol>
+        <div class="highlight">
+          <strong>Note:</strong> These rights are available only to citizens, not to foreigners. The state can impose "reasonable restrictions" on these freedoms.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step" data-step="6">
+      <div class="step-card">
+        <h2>Article 21 - Right to Life & Personal Liberty</h2>
+        <p>Article 21 states: <em>"No person shall be deprived of his life or personal liberty except according to procedure established by law."</em></p>
+        <h3>Expanded Scope (through judicial interpretation):</h3>
+        <ul>
+          <li>Right to live with dignity</li>
+          <li>Right to livelihood</li>
+          <li>Right to privacy (Puttaswamy case, 2017)</li>
+          <li>Right to education (Article 21A - 86th Amendment)</li>
+          <li>Right to clean environment</li>
+          <li>Right to health</li>
+          <li>Right to shelter</li>
+          <li>Right to free legal aid</li>
+        </ul>
+        <div class="highlight">
+          <strong>Landmark:</strong> In <em>Maneka Gandhi v. Union of India (1978)</em>, the Supreme Court expanded Article 21 to include the right to live with dignity.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step" data-step="7">
+      <div class="step-card">
+        <h2>Right against Exploitation (Articles 23-24)</h2>
+        <ul>
+          <li><strong>Article 23:</strong> Prohibits traffic in human beings, begar (forced labour), and similar forms of forced labour</li>
+          <li><strong>Article 24:</strong> Prohibits employment of children below 14 years in factories, mines, and hazardous employment</li>
+        </ul>
+        <div class="highlight">
+          <strong>Key Distinction:</strong> Article 23 protects against exploitation by both the State and private individuals, making it unique among Fundamental Rights.
+        </div>
+        <p>The state can impose compulsory service for public purposes (e.g., military service) without violating Article 23.</p>
+      </div>
+    </div>
+
+    <!-- Step 8: MCQ -->
+    <div class="step" data-step="8">
+      <div class="step-card">
+        <h2>Knowledge Check #2</h2>
+        <div class="mcq" id="mcq-2">
+          <div class="mcq-question">How many freedoms are guaranteed under Article 19 of the Indian Constitution?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-2')">5 freedoms</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this, 'mcq-2')">6 freedoms</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-2')">7 freedoms (originally)</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-2')">8 freedoms</button>
+          <div class="explanation" id="mcq-2-explanation">Article 19 originally guaranteed 7 freedoms. After the 44th Amendment (1978), the right to acquire, hold and dispose of property was removed. Now it guarantees 6 freedoms.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="step" data-step="9">
+      <div class="step-card">
+        <h2>Right to Freedom of Religion (Articles 25-28)</h2>
+        <ul>
+          <li><strong>Article 25:</strong> Freedom of conscience and free profession, practice, and propagation of religion</li>
+          <li><strong>Article 26:</strong> Freedom to manage religious affairs</li>
+          <li><strong>Article 27:</strong> Freedom from payment of taxes for promotion of any religion</li>
+          <li><strong>Article 28:</strong> Freedom from attending religious instruction in certain educational institutions</li>
+        </ul>
+        <div class="highlight">
+          <strong>Secular State:</strong> India follows the concept of "positive secularism" - equal treatment of all religions, not separation of state and religion.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 10 -->
+    <div class="step" data-step="10">
+      <div class="step-card">
+        <h2>Cultural & Educational Rights (Articles 29-30)</h2>
+        <ul>
+          <li><strong>Article 29:</strong> Protection of interests of minorities - any section of citizens with a distinct language, script, or culture has the right to conserve the same</li>
+          <li><strong>Article 30:</strong> Right of minorities to establish and administer educational institutions</li>
+        </ul>
+        <div class="highlight">
+          <strong>Important:</strong> Article 30 grants minorities (both religious and linguistic) the right to establish educational institutions of their choice. The state cannot discriminate against them in granting aid.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 11 -->
+    <div class="step" data-step="11">
+      <div class="step-card">
+        <h2>Right to Constitutional Remedies (Article 32)</h2>
+        <p>Article 32 empowers citizens to move the Supreme Court directly for enforcement of Fundamental Rights through five types of writs:</p>
+        <table>
+          <thead><tr><th>Writ</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Habeas Corpus</strong></td><td>"To have the body" - against illegal detention</td></tr>
+            <tr><td><strong>Mandamus</strong></td><td>"We command" - to compel performance of duty</td></tr>
+            <tr><td><strong>Prohibition</strong></td><td>Prevents lower court from exceeding jurisdiction</td></tr>
+            <tr><td><strong>Certiorari</strong></td><td>Quashes order of lower court</td></tr>
+            <tr><td><strong>Quo Warranto</strong></td><td>"By what authority" - challenges illegal holding of office</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 12: MCQ -->
+    <div class="step" data-step="12">
+      <div class="step-card">
+        <h2>Knowledge Check #3</h2>
+        <div class="mcq" id="mcq-3">
+          <div class="mcq-question">Which writ literally means "to have the body" and is used against illegal detention?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-3')">Mandamus</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this, 'mcq-3')">Habeas Corpus</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-3')">Quo Warranto</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-3')">Certiorari</button>
+          <div class="explanation" id="mcq-3-explanation">Habeas Corpus literally means "to have the body." It is issued to produce a person who has been detained unlawfully before the court. It is the most powerful writ against illegal detention.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 13 -->
+    <div class="step" data-step="13">
+      <div class="step-card">
+        <h2>Restrictions on Fundamental Rights</h2>
+        <p>Fundamental Rights are not absolute. They can be restricted by:</p>
+        <ul>
+          <li><strong>Reasonable Restrictions:</strong> The State can impose reasonable restrictions in the interest of sovereignty, integrity, security, public order, decency, or morality</li>
+          <li><strong>Martial Law (Article 34):</strong> Parliament can indemnify government actions during martial law</li>
+          <li><strong>National Emergency (Article 352):</strong> During emergency, Article 19 is automatically suspended. Other rights (except Articles 20-21) can be suspended by Presidential order</li>
+        </ul>
+        <div class="highlight">
+          <strong>44th Amendment:</strong> Articles 20 (Protection against conviction) and 21 (Right to Life) can NEVER be suspended, even during a National Emergency.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 14 -->
+    <div class="step" data-step="14">
+      <div class="step-card">
+        <h2>Amendment of Fundamental Rights</h2>
+        <p>The question of whether Fundamental Rights can be amended has been a subject of major constitutional debates:</p>
+        <ul>
+          <li><strong>Shankari Prasad Case (1951):</strong> Parliament can amend Fundamental Rights</li>
+          <li><strong>Golaknath Case (1967):</strong> Parliament cannot amend Fundamental Rights</li>
+          <li><strong>Kesavananda Bharati Case (1973):</strong> Parliament can amend but cannot alter the "Basic Structure" of the Constitution</li>
+          <li><strong>Minerva Mills Case (1980):</strong> Reaffirmed the Basic Structure doctrine</li>
+        </ul>
+        <div class="highlight">
+          <strong>Basic Structure Doctrine:</strong> The Supreme Court held that Parliament's power to amend is not unlimited. Fundamental Rights that form part of the basic structure cannot be taken away.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 15: Final MCQ & Summary -->
+    <div class="step" data-step="15">
+      <div class="step-card">
+        <h2>Final Assessment</h2>
+        <div class="mcq" id="mcq-4">
+          <div class="mcq-question">In which landmark case did the Supreme Court establish the "Basic Structure" doctrine?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-4')">Golaknath Case (1967)</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this, 'mcq-4')">Kesavananda Bharati Case (1973)</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-4')">Minerva Mills Case (1980)</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this, 'mcq-4')">Maneka Gandhi Case (1978)</button>
+          <div class="explanation" id="mcq-4-explanation">The Basic Structure doctrine was established in the Kesavananda Bharati v. State of Kerala (1973) case, where the 13-judge bench held that Parliament can amend any part of the Constitution but cannot destroy its basic structure.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completion -->
+    <div class="step" data-step="complete">
+      <div class="step-card completion">
+        <h2>Simulation Complete!</h2>
+        <div class="score-display" id="final-score"></div>
+        <p>You have completed the guided learning on Fundamental Rights (Part III).</p>
+        <p style="margin-top: 12px;">Review the steps again or explore more topics to strengthen your preparation.</p>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-prev" id="btn-prev" onclick="prevStep()" disabled>Previous</button>
+      <button class="btn btn-next" id="btn-next" onclick="nextStep()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 15;
+    let score = 0;
+    let totalMCQs = 4;
+
+    function updateUI() {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      const activeStep = document.querySelector(`.step[data-step="${currentStep}"]`) || document.querySelector('.step[data-step="complete"]');
+      if (activeStep) activeStep.classList.add('active');
+
+      const pct = currentStep <= totalSteps ? (currentStep / totalSteps) * 100 : 100;
+      document.getElementById('progress').style.width = pct + '%';
+      document.getElementById('step-indicator').textContent = currentStep <= totalSteps ? `Step ${currentStep} of ${totalSteps}` : 'Complete';
+
+      document.getElementById('btn-prev').disabled = currentStep <= 1;
+      document.getElementById('btn-next').textContent = currentStep >= totalSteps ? 'Finish' : 'Next';
+      if (currentStep > totalSteps) {
+        document.querySelector('.nav-buttons').style.display = 'none';
+      }
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateUI();
+      } else if (currentStep === totalSteps) {
+        currentStep = totalSteps + 1;
+        document.getElementById('final-score').textContent = `Score: ${score} / ${totalMCQs}`;
+        updateUI();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateUI();
+      }
+    }
+
+    function checkMCQ(btn, mcqId) {
+      const mcq = document.getElementById(mcqId);
+      const options = mcq.querySelectorAll('.mcq-option');
+      const explanation = document.getElementById(mcqId + '-explanation');
+      const isCorrect = btn.dataset.correct === 'true';
+
+      options.forEach(o => {
+        o.disabled = true;
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+      });
+
+      if (!isCorrect) {
+        btn.classList.add('wrong');
+        explanation.classList.add('wrong');
+      } else {
+        score++;
+        explanation.classList.add('correct');
+      }
+      explanation.classList.add('show');
+    }
+  </script>
+</body>
+</html>

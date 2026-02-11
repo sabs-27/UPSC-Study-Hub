@@ -1,0 +1,176 @@
+[
+  {
+    "id": "polity",
+    "name": "Indian Polity & Governance",
+    "slug": "polity",
+    "icon": "landmark",
+    "color": "#6366f1",
+    "description": "Constitution, governance, political system, public policy",
+    "topics": [
+      {
+        "id": "polity-001",
+        "title": "Fundamental Rights (Part III)",
+        "slug": "fundamental-rights",
+        "tags": ["constitution", "rights", "article 14-32"],
+        "difficulty": "Medium",
+        "steps": 15,
+        "file": "/simulations/polity/fundamental-rights/index.html"
+      },
+      {
+        "id": "polity-002",
+        "title": "Directive Principles of State Policy",
+        "slug": "directive-principles",
+        "tags": ["constitution", "dpsp", "part iv"],
+        "difficulty": "Medium",
+        "file": "/simulations/polity/directive-principles/index.html"
+      },
+      {
+        "id": "polity-003",
+        "title": "Parliament of India",
+        "slug": "parliament",
+        "tags": ["legislature", "lok sabha", "rajya sabha"],
+        "difficulty": "Easy",
+        "file": "/simulations/polity/parliament/index.html"
+      }
+    ]
+  },
+  {
+    "id": "history",
+    "name": "Indian & World History",
+    "slug": "history",
+    "icon": "scroll-text",
+    "color": "#f59e0b",
+    "description": "Ancient, Medieval, Modern India, World History",
+    "topics": [
+      {
+        "id": "history-001",
+        "title": "Harappan Civilization",
+        "slug": "harappan-civilization",
+        "tags": ["ancient india", "indus valley", "archaeology"],
+        "difficulty": "Easy",
+        "steps": 15,
+        "file": "/simulations/history/harappan-civilization/index.html"
+      },
+      {
+        "id": "history-002",
+        "title": "Mauryan Empire",
+        "slug": "mauryan-empire",
+        "tags": ["ancient india", "ashoka", "chandragupta"],
+        "difficulty": "Medium",
+        "file": "/simulations/history/mauryan-empire/index.html"
+      },
+      {
+        "id": "history-003",
+        "title": "Indian National Movement",
+        "slug": "national-movement",
+        "tags": ["modern india", "freedom struggle", "gandhi"],
+        "difficulty": "Hard",
+        "file": "/simulations/history/national-movement/index.html"
+      }
+    ]
+  },
+  {
+    "id": "geography",
+    "name": "Geography",
+    "slug": "geography",
+    "icon": "globe-2",
+    "color": "#10b981",
+    "description": "Physical, Human, Indian & World Geography",
+    "topics": [
+      {
+        "id": "geo-001",
+        "title": "Indian Monsoon System",
+        "slug": "indian-monsoon",
+        "tags": ["climate", "weather", "monsoon"],
+        "difficulty": "Medium",
+        "file": "/simulations/geography/indian-monsoon/index.html"
+      },
+      {
+        "id": "geo-002",
+        "title": "Major River Systems of India",
+        "slug": "river-systems",
+        "tags": ["rivers", "drainage", "ganga"],
+        "difficulty": "Easy",
+        "file": "/simulations/geography/river-systems/index.html"
+      }
+    ]
+  },
+  {
+    "id": "economics",
+    "name": "Indian Economy",
+    "slug": "economics",
+    "icon": "trending-up",
+    "color": "#ef4444",
+    "description": "Economic development, planning, budgeting, fiscal policy",
+    "topics": [
+      {
+        "id": "eco-001",
+        "title": "Five Year Plans & NITI Aayog",
+        "slug": "five-year-plans",
+        "tags": ["planning", "niti aayog", "economic policy"],
+        "difficulty": "Medium",
+        "file": "/simulations/economics/five-year-plans/index.html"
+      },
+      {
+        "id": "eco-002",
+        "title": "Banking & Monetary Policy",
+        "slug": "banking-monetary",
+        "tags": ["rbi", "banking", "monetary policy"],
+        "difficulty": "Hard",
+        "file": "/simulations/economics/banking-monetary/index.html"
+      }
+    ]
+  },
+  {
+    "id": "science",
+    "name": "Science & Technology",
+    "slug": "science",
+    "icon": "atom",
+    "color": "#8b5cf6",
+    "description": "General science, space, defence, biotech, IT",
+    "topics": [
+      {
+        "id": "sci-001",
+        "title": "India's Space Programme (ISRO)",
+        "slug": "isro-space",
+        "tags": ["isro", "space", "chandrayaan", "mangalyaan"],
+        "difficulty": "Easy",
+        "file": "/simulations/science/isro-space/index.html"
+      },
+      {
+        "id": "sci-002",
+        "title": "Nuclear Energy in India",
+        "slug": "nuclear-energy",
+        "tags": ["nuclear", "energy", "atomic"],
+        "difficulty": "Medium",
+        "file": "/simulations/science/nuclear-energy/index.html"
+      }
+    ]
+  },
+  {
+    "id": "environment",
+    "name": "Environment & Ecology",
+    "slug": "environment",
+    "icon": "trees",
+    "color": "#059669",
+    "description": "Biodiversity, climate change, environmental policies",
+    "topics": [
+      {
+        "id": "env-001",
+        "title": "Biodiversity Hotspots of India",
+        "slug": "biodiversity-hotspots",
+        "tags": ["biodiversity", "western ghats", "ecology"],
+        "difficulty": "Medium",
+        "file": "/simulations/environment/biodiversity-hotspots/index.html"
+      },
+      {
+        "id": "env-002",
+        "title": "Climate Change & Paris Agreement",
+        "slug": "climate-change",
+        "tags": ["climate", "paris agreement", "global warming"],
+        "difficulty": "Easy",
+        "file": "/simulations/environment/climate-change/index.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "year": 2024,
+    "papers": [
+      {
+        "id": "py-2024-gs1",
+        "title": "General Studies Paper I - 2024",
+        "slug": "gs1-2024",
+        "category": "Prelims",
+        "file": "/previous-years/2024/gs1.html"
+      },
+      {
+        "id": "py-2024-gs2",
+        "title": "General Studies Paper II (CSAT) - 2024",
+        "slug": "gs2-2024",
+        "category": "Prelims",
+        "file": "/previous-years/2024/gs2.html"
+      }
+    ]
+  },
+  {
+    "year": 2023,
+    "papers": [
+      {
+        "id": "py-2023-gs1",
+        "title": "General Studies Paper I - 2023",
+        "slug": "gs1-2023",
+        "category": "Prelims",
+        "file": "/previous-years/2023/gs1.html"
+      },
+      {
+        "id": "py-2023-gs2",
+        "title": "General Studies Paper II (CSAT) - 2023",
+        "slug": "gs2-2023",
+        "category": "Prelims",
+        "file": "/previous-years/2023/gs2.html"
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "papers": [
+      {
+        "id": "py-2022-gs1",
+        "title": "General Studies Paper I - 2022",
+        "slug": "gs1-2022",
+        "category": "Prelims",
+        "file": "/previous-years/2022/gs1.html"
+      },
+      {
+        "id": "py-2022-gs2",
+        "title": "General Studies Paper II (CSAT) - 2022",
+        "slug": "gs2-2022",
+        "category": "Prelims",
+        "file": "/previous-years/2022/gs2.html"
+      }
+    ]
+  },
+  {
+    "year": 2021,
+    "papers": [
+      {
+        "id": "py-2021-gs1",
+        "title": "General Studies Paper I - 2021",
+        "slug": "gs1-2021",
+        "category": "Prelims",
+        "file": "/previous-years/2021/gs1.html"
+      },
+      {
+        "id": "py-2021-gs2",
+        "title": "General Studies Paper II (CSAT) - 2021",
+        "slug": "gs2-2021",
+        "category": "Prelims",
+        "file": "/previous-years/2021/gs2.html"
+      }
+    ]
+  }
+]

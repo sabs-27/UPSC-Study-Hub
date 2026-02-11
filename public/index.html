@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPSC Prep Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Background blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <!-- Logo -->
+      <div class="logo" id="logo-home">
+        <i data-lucide="graduation-cap" class="logo-icon"></i>
+        <span class="logo-text">Grad Studio</span>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="nav-links" id="nav-links">
+        <a href="#" class="nav-link active" data-section="home">Home</a>
+        <a href="#" class="nav-link" data-section="subjects">Subjects</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link nav-dropdown-trigger" data-section="previous-years">Content <i data-lucide="chevron-down" class="dropdown-chevron"></i></a>
+          <div class="nav-dropdown-menu">
+            <a href="#" class="dropdown-item" data-section="previous-years"><i data-lucide="calendar-clock"></i> Previous Years</a>
+            <a href="#" class="dropdown-item" data-section="subjects"><i data-lucide="book-open"></i> All Subjects</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Search -->
+      <div class="search-bar">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="search-input" placeholder="Search documentation..." autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+      </div>
+
+      <!-- Right side actions -->
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i data-lucide="sun"></i>
+        </button>
+        <button class="btn-signin" id="btn-signin">Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <div class="mobile-nav">
+      <a href="#" class="mobile-nav-link active" data-section="home">Home</a>
+      <a href="#" class="mobile-nav-link" data-section="subjects">Subjects</a>
+      <a href="#" class="mobile-nav-link" data-section="previous-years">Previous Years</a>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- Home Section -->
+    <section id="section-home" class="section active">
+      <div class="hero">
+        <div class="hero-content">
+          <h2 class="hero-title">Master UPSC with <span class="gradient-text">Interactive Learning</span></h2>
+          <p class="hero-desc">Step-by-step guided simulations for every topic. Read, practice, and conquer the Civil Services Examination.</p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number">6</span>
+              <span class="stat-label">Subjects</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Topics</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">4</span>
+              <span class="stat-label">Year Papers</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-goto="subjects"><i data-lucide="rocket"></i> Explore Subjects</button>
+            <button class="btn btn-secondary" data-goto="previous-years"><i data-lucide="file-text"></i> Previous Years</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick access subjects grid on home -->
+      <div class="home-subjects">
+        <h3 class="section-heading">Quick Access - Subjects</h3>
+        <div id="home-subjects-grid" class="subjects-grid"></div>
+      </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section id="section-subjects" class="section">
+      <div class="section-header">
+        <h2 class="section-title"><i data-lucide="book-open"></i> All Subjects</h2>
+        <p class="section-desc">Choose a subject to explore guided topic simulations</p>
+      </div>
+      <div id="subjects-grid" class="subjects-grid"></div>
+    </section>
+
+    <!-- Subject Detail (topics list) -->
+    <section id="section-subject-detail" class="section">
+      <button class="btn-back" id="btn-back-subjects"><i data-lucide="arrow-left"></i> Back to Subjects</button>
+      <div id="subject-detail-header" class="section-header"></div>
+      <div id="topics-grid" class="topics-grid"></div>
+    </section>
+
+    <!-- Previous Years Section -->
+    <section id="section-previous-years" class="section">
+      <div class="section-header">
+        <h2 class="section-title"><i data-lucide="calendar-clock"></i> Previous Year Papers</h2>
+        <p class="section-desc">Practice with actual UPSC question papers</p>
+      </div>
+      <div id="previous-years-grid" class="years-grid"></div>
+    </section>
+
+    <!-- Year Detail (papers list) -->
+    <section id="section-year-detail" class="section">
+      <button class="btn-back" id="btn-back-years"><i data-lucide="arrow-left"></i> Back to Previous Years</button>
+      <div id="year-detail-header" class="section-header"></div>
+      <div id="papers-grid" class="topics-grid"></div>
+    </section>
+
+    <!-- Simulation Viewer (iframe) -->
+    <section id="section-viewer" class="section">
+      <div class="viewer-header">
+        <button class="btn-back" id="btn-back-viewer"><i data-lucide="arrow-left"></i> Back</button>
+        <h3 id="viewer-title" class="viewer-title"></h3>
+      </div>
+      <div class="viewer-container">
+        <iframe id="simulation-iframe" class="simulation-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 UPSC Prep Portal. Built for aspirants, by aspirants.</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

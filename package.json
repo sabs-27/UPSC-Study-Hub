@@ -1,0 +1,11 @@
+{
+  "name": "upsc-prep-portal",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

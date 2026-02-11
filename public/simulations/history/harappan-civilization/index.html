@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harappan Civilization</title>
+  <style>
+    :root { --primary: #f59e0b; --primary-light: #fbbf24; --bg: #f8fafc; --card-bg: #fff; --text: #1e293b; --text-light: #64748b; --border: #e2e8f0; --success: #10b981; --error: #ef4444; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+    .sim-header { text-align: center; margin-bottom: 32px; }
+    .sim-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+    .sim-header p { color: var(--text-light); }
+    .progress-bar { background: var(--border); border-radius: 20px; height: 8px; margin-bottom: 32px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); border-radius: 20px; transition: width 0.4s; }
+    .step-indicator { text-align: center; font-size: 0.85rem; color: var(--text-light); margin-bottom: 16px; }
+    .step { display: none; animation: fadeIn 0.3s ease; }
+    .step.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .step-card { background: var(--card-bg); border-radius: 12px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid var(--border); margin-bottom: 20px; }
+    .step-card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+    .step-card h3 { font-size: 1.05rem; font-weight: 600; margin: 16px 0 8px; }
+    .step-card ul, .step-card ol { padding-left: 20px; margin: 8px 0; }
+    .step-card li { margin-bottom: 6px; font-size: 0.95rem; }
+    .highlight { background: linear-gradient(120deg, rgba(245,158,11,0.1), rgba(251,191,36,0.1)); padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary); margin: 16px 0; }
+    .highlight strong { color: var(--primary); }
+    .mcq { margin-top: 20px; }
+    .mcq-question { font-weight: 600; margin-bottom: 12px; }
+    .mcq-option { display: block; width: 100%; text-align: left; padding: 12px 16px; margin-bottom: 8px; background: var(--bg); border: 2px solid var(--border); border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.9rem; transition: 0.2s; }
+    .mcq-option:hover { border-color: var(--primary-light); }
+    .mcq-option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); }
+    .mcq-option.wrong { border-color: var(--error); background: rgba(239,68,68,0.1); }
+    .mcq-option:disabled { cursor: default; }
+    .explanation { display: none; margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; }
+    .explanation.show { display: block; }
+    .explanation.correct { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+    .explanation.wrong { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+    .nav-buttons { display: flex; justify-content: space-between; margin-top: 24px; }
+    .btn { padding: 10px 24px; border: none; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .btn-next { background: var(--primary); color: white; }
+    .btn-next:hover { background: var(--primary-light); }
+    .btn-prev { background: var(--bg); color: var(--text-light); border: 1px solid var(--border); }
+    .btn:disabled { opacity: 0.5; cursor: default; }
+    .completion { text-align: center; padding: 40px; }
+    .completion h2 { font-size: 1.6rem; color: var(--success); margin-bottom: 12px; }
+    .score-display { font-size: 2rem; font-weight: 800; color: var(--primary); margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    th { background: var(--bg); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sim-header">
+      <h1>Harappan Civilization</h1>
+      <p>Indian History - 15 Step Guided Learning</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 6.67%"></div></div>
+    <div class="step-indicator" id="step-indicator">Step 1 of 15</div>
+
+    <div class="step active" data-step="1">
+      <div class="step-card">
+        <h2>Introduction to the Harappan Civilization</h2>
+        <p>The Harappan Civilization (also known as the Indus Valley Civilization) is one of the oldest urban civilizations in the world, dating back to approximately <strong>3300 BCE - 1300 BCE</strong>.</p>
+        <div class="highlight"><strong>Discovery:</strong> The civilization was first discovered at Harappa (Punjab, Pakistan) in 1921 by Daya Ram Sahni, and at Mohenjo-daro (Sindh, Pakistan) in 1922 by R.D. Banerjee.</div>
+        <p>It is a Bronze Age civilization that flourished in the northwestern regions of South Asia.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="2">
+      <div class="step-card">
+        <h2>Phases of the Civilization</h2>
+        <table>
+          <thead><tr><th>Phase</th><th>Period</th><th>Features</th></tr></thead>
+          <tbody>
+            <tr><td>Early Harappan</td><td>3300-2600 BCE</td><td>Village settlements, early farming</td></tr>
+            <tr><td>Mature Harappan</td><td>2600-1900 BCE</td><td>Urban centers, peak of civilization</td></tr>
+            <tr><td>Late Harappan</td><td>1900-1300 BCE</td><td>Decline, de-urbanization</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight"><strong>Key:</strong> The Mature Harappan phase (2600-1900 BCE) represents the peak of the civilization with well-planned cities, advanced drainage, and standardized weights.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="3">
+      <div class="step-card">
+        <h2>Major Sites</h2>
+        <table>
+          <thead><tr><th>Site</th><th>Location</th><th>Key Feature</th></tr></thead>
+          <tbody>
+            <tr><td>Harappa</td><td>Punjab, Pakistan</td><td>Granaries, working platforms</td></tr>
+            <tr><td>Mohenjo-daro</td><td>Sindh, Pakistan</td><td>Great Bath, largest city</td></tr>
+            <tr><td>Lothal</td><td>Gujarat, India</td><td>Dockyard, bead-making factory</td></tr>
+            <tr><td>Kalibangan</td><td>Rajasthan, India</td><td>Fire altars, ploughed field</td></tr>
+            <tr><td>Dholavira</td><td>Gujarat, India</td><td>Water reservoir system, signboard</td></tr>
+            <tr><td>Rakhigarhi</td><td>Haryana, India</td><td>Largest Harappan site in India</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step" data-step="4">
+      <div class="step-card">
+        <h2>Knowledge Check #1</h2>
+        <div class="mcq" id="mcq-1">
+          <div class="mcq-question">Which Harappan site is known for its ancient dockyard?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-1')">Mohenjo-daro</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this,'mcq-1')">Lothal</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-1')">Kalibangan</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-1')">Dholavira</button>
+          <div class="explanation" id="mcq-1-explanation">Lothal in Gujarat had an ancient dockyard, suggesting the Harappans had maritime trade connections. It is one of the most important archaeological sites of the civilization.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="5">
+      <div class="step-card">
+        <h2>Town Planning</h2>
+        <p>The Harappan cities displayed remarkable urban planning:</p>
+        <ul>
+          <li><strong>Grid Pattern:</strong> Streets were laid out in a grid pattern, intersecting at right angles</li>
+          <li><strong>Two-part division:</strong> Cities had a Citadel (upper town) and Lower Town</li>
+          <li><strong>Drainage System:</strong> Advanced covered drainage system - every house connected to street drains</li>
+          <li><strong>Standardized Bricks:</strong> Ratio of 4:2:1 (length:width:height) used uniformly</li>
+          <li><strong>Public Buildings:</strong> Great Bath, granaries, assembly halls</li>
+        </ul>
+        <div class="highlight"><strong>Remarkable:</strong> The drainage system of the Harappan civilization was the most advanced in the ancient world - more advanced than contemporary Mesopotamian cities.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="6">
+      <div class="step-card">
+        <h2>Economy & Trade</h2>
+        <ul>
+          <li><strong>Agriculture:</strong> Wheat, barley, rice, cotton, peas, sesame</li>
+          <li><strong>Crafts:</strong> Bead-making, pottery, metalwork, seal-carving</li>
+          <li><strong>Trade:</strong> Extensive trade with Mesopotamia (called "Meluha" in Mesopotamian texts)</li>
+          <li><strong>Weights & Measures:</strong> Standardized system based on multiples of 16</li>
+        </ul>
+        <div class="highlight"><strong>First in the world:</strong> The Harappans were the first to cultivate cotton, which the Greeks later called "Sindon" (from Sindh).</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="7">
+      <div class="step-card">
+        <h2>The Great Bath - Mohenjo-daro</h2>
+        <p>The Great Bath is the most famous structure of Mohenjo-daro:</p>
+        <ul>
+          <li>Dimensions: 12m long, 7m wide, 2.4m deep</li>
+          <li>Made of baked bricks with bitumen (natural tar) for waterproofing</li>
+          <li>Surrounded by changing rooms and a gallery</li>
+          <li>Likely used for ritualistic bathing</li>
+        </ul>
+        <div class="highlight"><strong>Significance:</strong> The Great Bath indicates the importance of ritual purification in Harappan society, a practice that continues in Indian culture today.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="8">
+      <div class="step-card">
+        <h2>Knowledge Check #2</h2>
+        <div class="mcq" id="mcq-2">
+          <div class="mcq-question">What was the standardized brick ratio used in Harappan construction?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-2')">3:2:1</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this,'mcq-2')">4:2:1</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-2')">5:3:1</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-2')">6:3:1</button>
+          <div class="explanation" id="mcq-2-explanation">The Harappans used a standardized brick ratio of 4:2:1 (length:width:height) across all their cities, showing remarkable uniformity in construction standards.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="9">
+      <div class="step-card">
+        <h2>Script & Seals</h2>
+        <ul>
+          <li>The Harappan script remains <strong>undeciphered</strong></li>
+          <li>Written from <strong>right to left</strong> (boustrophedon style)</li>
+          <li>Over 4,000 seals have been discovered</li>
+          <li>Most common seal animal: <strong>Unicorn Bull</strong></li>
+          <li>Seals were likely used for trade and identification</li>
+        </ul>
+        <div class="highlight"><strong>UPSC Important:</strong> The Harappan script is still undeciphered and is one of the most frequently asked facts in UPSC Prelims.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="10">
+      <div class="step-card">
+        <h2>Religion & Beliefs</h2>
+        <ul>
+          <li><strong>Mother Goddess:</strong> Numerous terracotta figurines found</li>
+          <li><strong>Proto-Shiva (Pashupati):</strong> Famous seal showing a figure in yogic posture surrounded by animals</li>
+          <li><strong>Nature Worship:</strong> Evidence of tree worship (Pipal tree)</li>
+          <li><strong>Animal Worship:</strong> Bull was an important religious symbol</li>
+          <li><strong>No Temple:</strong> No evidence of any temple has been found</li>
+        </ul>
+        <div class="highlight"><strong>Key Fact:</strong> No evidence of temples or places of worship has been found in any Harappan site, unlike contemporary civilizations of Egypt and Mesopotamia.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="11">
+      <div class="step-card">
+        <h2>Burial Practices</h2>
+        <p>Three types of burial practices have been found:</p>
+        <ol>
+          <li><strong>Complete burial:</strong> The most common type (found at most sites)</li>
+          <li><strong>Fractional burial:</strong> Burial of bones after exposure (found at Mohenjo-daro)</li>
+          <li><strong>Cremation:</strong> Burial of ashes in urns (found at Lothal)</li>
+        </ol>
+        <p>Bodies were generally buried in a north-south direction with pottery and personal ornaments.</p>
+      </div>
+    </div>
+
+    <div class="step" data-step="12">
+      <div class="step-card">
+        <h2>Knowledge Check #3</h2>
+        <div class="mcq" id="mcq-3">
+          <div class="mcq-question">Which animal is most commonly depicted on Harappan seals?</div>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this,'mcq-3')">Unicorn Bull</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-3')">Elephant</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-3')">Tiger</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-3')">Rhinoceros</button>
+          <div class="explanation" id="mcq-3-explanation">The Unicorn Bull is the most commonly depicted animal on Harappan seals. While other animals like elephant, tiger, and rhinoceros also appear, the unicorn bull is found on the majority of seals discovered.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="13">
+      <div class="step-card">
+        <h2>Decline of the Civilization</h2>
+        <p>Multiple theories have been proposed for the decline:</p>
+        <ul>
+          <li><strong>Climate Change:</strong> Shifting of monsoon patterns, drought</li>
+          <li><strong>River Changes:</strong> Drying up of the Ghaggar-Hakra river system</li>
+          <li><strong>Flooding:</strong> Repeated floods (especially at Mohenjo-daro)</li>
+          <li><strong>Aryan Invasion Theory:</strong> Now largely discredited by modern scholars</li>
+          <li><strong>Tectonic Activity:</strong> Earthquakes causing river diversions</li>
+        </ul>
+        <div class="highlight"><strong>Most Accepted:</strong> The decline was likely a combination of environmental factors - climate change and river drying - leading to gradual de-urbanization rather than sudden collapse.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="14">
+      <div class="step-card">
+        <h2>Legacy & UPSC Relevance</h2>
+        <ul>
+          <li>UNESCO World Heritage Site: Mohenjo-daro (1980), Dholavira (2021)</li>
+          <li>Rakhigarhi excavations providing new DNA evidence about Harappan people</li>
+          <li>Frequently asked in both Prelims and Mains</li>
+          <li>Key for Ancient Indian History section of GS Paper I</li>
+        </ul>
+        <div class="highlight"><strong>Recent Development:</strong> Dholavira was inscribed as a UNESCO World Heritage Site in 2021, making it an important current affairs topic for UPSC.</div>
+      </div>
+    </div>
+
+    <div class="step" data-step="15">
+      <div class="step-card">
+        <h2>Final Assessment</h2>
+        <div class="mcq" id="mcq-4">
+          <div class="mcq-question">Which Harappan site was inscribed as a UNESCO World Heritage Site in 2021?</div>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-4')">Lothal</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-4')">Rakhigarhi</button>
+          <button class="mcq-option" data-correct="true" onclick="checkMCQ(this,'mcq-4')">Dholavira</button>
+          <button class="mcq-option" data-correct="false" onclick="checkMCQ(this,'mcq-4')">Kalibangan</button>
+          <div class="explanation" id="mcq-4-explanation">Dholavira in Gujarat was inscribed as a UNESCO World Heritage Site in 2021. It is the third Harappan site to receive this status after Mohenjo-daro (1980) and the Archaeological Ruins at Moenjodaro.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="complete">
+      <div class="step-card completion">
+        <h2>Simulation Complete!</h2>
+        <div class="score-display" id="final-score"></div>
+        <p>You have completed the guided learning on Harappan Civilization.</p>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-prev" id="btn-prev" onclick="prevStep()" disabled>Previous</button>
+      <button class="btn btn-next" id="btn-next" onclick="nextStep()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep=1;const totalSteps=15;let score=0,totalMCQs=4;
+    function updateUI(){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));const a=document.querySelector(`.step[data-step="${currentStep}"]`)||document.querySelector('.step[data-step="complete"]');if(a)a.classList.add('active');document.getElementById('progress').style.width=(currentStep<=totalSteps?(currentStep/totalSteps)*100:100)+'%';document.getElementById('step-indicator').textContent=currentStep<=totalSteps?`Step ${currentStep} of ${totalSteps}`:'Complete';document.getElementById('btn-prev').disabled=currentStep<=1;document.getElementById('btn-next').textContent=currentStep>=totalSteps?'Finish':'Next';if(currentStep>totalSteps)document.querySelector('.nav-buttons').style.display='none'}
+    function nextStep(){if(currentStep<totalSteps){currentStep++;updateUI()}else if(currentStep===totalSteps){currentStep=totalSteps+1;document.getElementById('final-score').textContent=`Score: ${score} / ${totalMCQs}`;updateUI()}}
+    function prevStep(){if(currentStep>1){currentStep--;updateUI()}}
+    function checkMCQ(btn,id){const m=document.getElementById(id),opts=m.querySelectorAll('.mcq-option'),exp=document.getElementById(id+'-explanation'),ok=btn.dataset.correct==='true';opts.forEach(o=>{o.disabled=true;if(o.dataset.correct==='true')o.classList.add('correct')});if(!ok){btn.classList.add('wrong');exp.classList.add('wrong')}else{score++;exp.classList.add('correct')}exp.classList.add('show')}
+  </script>
+</body>
+</html>
